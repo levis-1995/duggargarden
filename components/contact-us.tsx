@@ -1,0 +1,83 @@
+import { Button } from "@/components/ui/button"
+import { Phone, MessageCircle, AtSign, MapPin } from "lucide-react"
+import { siteConfig, buildWhatsAppLink } from "@/lib/site"
+
+export function ContactUs() {
+  return (
+    <section id="contact" className="border-t border-border/60 bg-secondary/40">
+      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Contact Us</p>
+          <h2 className="mt-3 text-balance font-serif text-3xl font-semibold text-foreground md:text-4xl">
+            We&apos;re just a call away
+          </h2>
+          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+            Have a question about your stay, the cafe, or directions? Give us a ring or message us — we&apos;re
+            always happy to help.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <a
+            href={`tel:${siteConfig.whatsappNumber}`}
+            className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Phone className="size-6" />
+            </span>
+            <span className="text-sm font-medium text-foreground">Call Us</span>
+            <span className="text-sm text-muted-foreground">{siteConfig.phoneDisplay}</span>
+          </a>
+
+          <a
+            href={buildWhatsAppLink("Hi Duggar Den! I have a question about staying with you.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <MessageCircle className="size-6" />
+            </span>
+            <span className="text-sm font-medium text-foreground">WhatsApp</span>
+            <span className="text-sm text-muted-foreground">{siteConfig.phoneDisplay}</span>
+          </a>
+
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <AtSign className="size-6" />
+            </span>
+            <span className="text-sm font-medium text-foreground">Instagram</span>
+            <span className="text-sm text-muted-foreground">{siteConfig.instagramHandle}</span>
+          </a>
+
+          <a
+            href={`https://maps.google.com/maps?q=${encodeURIComponent(siteConfig.mapQuery)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
+          >
+            <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <MapPin className="size-6" />
+            </span>
+            <span className="text-sm font-medium text-foreground">Visit Us</span>
+            <span className="text-sm text-muted-foreground">{siteConfig.address.line1}</span>
+          </a>
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Button asChild size="lg" className="gap-2">
+            <a href={`tel:${siteConfig.whatsappNumber}`}>
+              <Phone className="size-5" />
+              Call {siteConfig.phoneDisplay}
+            </a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}

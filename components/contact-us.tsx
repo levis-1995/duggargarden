@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, AtSign, MapPin } from "lucide-react"
+import { Phone, MessageCircle, AtSign, MapPin, Calendar } from "lucide-react"
 import { siteConfig, buildWhatsAppLink } from "@/lib/site"
 
 export function ContactUs() {
@@ -19,14 +19,14 @@ export function ContactUs() {
 
         <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <a
-            href={`tel:${siteConfig.whatsappNumber}`}
+            href={`tel:${siteConfig.bookingNumber}`}
             className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
           >
             <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Phone className="size-6" />
+              <Calendar className="size-6" />
             </span>
-            <span className="text-sm font-medium text-foreground">Call Us</span>
-            <span className="text-sm text-muted-foreground">{siteConfig.phoneDisplay}</span>
+            <span className="text-sm font-medium text-foreground">Bookings</span>
+            <span className="text-sm text-muted-foreground">{siteConfig.bookingPhoneDisplay}</span>
           </a>
 
           <a

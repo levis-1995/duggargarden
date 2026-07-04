@@ -13,10 +13,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { buildWhatsAppLink } from "@/lib/site"
+import { buildBookingWhatsAppLink } from "@/lib/site"
 import { MessageCircle } from "lucide-react"
 
-const roomOptions = ["Deluxe Cabin Room", "Family Mountain Room", "Not sure yet"]
 const guestOptions = ["1 Guest", "2 Guests", "3 Guests", "4 Guests", "5+ Guests"]
 
 export function BookingForm() {
@@ -25,7 +24,6 @@ export function BookingForm() {
   const [checkIn, setCheckIn] = useState("")
   const [checkOut, setCheckOut] = useState("")
   const [guests, setGuests] = useState(guestOptions[1])
-  const [room, setRoom] = useState(roomOptions[0])
   const [notes, setNotes] = useState("")
 
   function handleSubmit(e: React.FormEvent) {
@@ -39,7 +37,6 @@ export function BookingForm() {
       `Check-in: ${checkIn || "-"}`,
       `Check-out: ${checkOut || "-"}`,
       `Guests: ${guests}`,
-      `Room: ${room}`,
       notes ? `Notes: ${notes}` : "",
       "",
       "Sent from the Duggar Den website.",
@@ -47,7 +44,7 @@ export function BookingForm() {
       .filter(Boolean)
       .join("\n")
 
-    window.open(buildWhatsAppLink(message), "_blank", "noopener,noreferrer")
+    window.open(buildBookingWhatsAppLink(message), "_blank", "noopener,noreferrer")
   }
 
   return (
@@ -99,37 +96,20 @@ export function BookingForm() {
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-2">
-          <Label>Guests</Label>
-          <Select value={guests} onValueChange={setGuests}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {guestOptions.map((g) => (
-                <SelectItem key={g} value={g}>
-                  {g}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="flex flex-col gap-2">
-          <Label>Room type</Label>
-          <Select value={room} onValueChange={setRoom}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {roomOptions.map((r) => (
-                <SelectItem key={r} value={r}>
-                  {r}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="flex flex-col gap-2">
+        <Label>Guests</Label>
+        <Select value={guests} onValueChange={setGuests}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {guestOptions.map((g) => (
+              <SelectItem key={g} value={g}>
+                {g}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="flex flex-col gap-2">

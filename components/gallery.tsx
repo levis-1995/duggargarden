@@ -1,13 +1,17 @@
 import Image from "next/image"
 
 const images = [
-  { src: "/images/gallery-deck.png", alt: "Wooden deck with valley views", span: "sm:col-span-2 sm:row-span-2" },
-  { src: "/images/gallery-campfire.png", alt: "Evening campfire under the stars", span: "" },
-  { src: "/images/gallery-breakfast.png", alt: "Home-cooked mountain breakfast", span: "" },
-  { src: "/images/gallery-trail.png", alt: "Forest hiking trail", span: "sm:col-span-2" },
-  { src: "/images/room-deluxe.png", alt: "Cozy deluxe cabin room", span: "" },
-  { src: "/images/cafe.png", alt: "The Den cafe interior", span: "" },
+  { src: "/images/gallery-1.jpg", alt: "Scenic view of Duggar Den under a clear sky", span: "sm:col-span-2 sm:row-span-2" },
+  { src: "/images/gallery-2.jpg", alt: "Relaxing outdoor seating area", span: "" },
+  { src: "/images/gallery-3.jpg", alt: "Cozy indoor lounge area", span: "" },
+  { src: "/images/gallery-4.jpg", alt: "Lush garden and pathway", span: "sm:col-span-2" },
+  { src: "/images/gallery-5.jpg", alt: "Freshly brewed coffee at the cafe", span: "" },
+  { src: "/images/gallery-6.png", alt: "Delicious local cuisines served", span: "" },
+  { src: "/images/gallery-7.jpeg", alt: "Stunning valley sunset view", span: "sm:col-span-2" },
+  { src: "/images/gallery-8.jpeg", alt: "Charming cabin exterior", span: "sm:col-span-2" },
+  { src: "/images/galley-9.jpeg", alt: "Warm firepit evening experience", span: "sm:col-span-2" },
 ]
+
 
 export function Gallery() {
   return (

@@ -65,7 +65,16 @@ export function SiteFooter() {
                   className="flex items-center gap-2.5 transition-colors hover:text-primary"
                 >
                   <Phone className="size-4 shrink-0 text-primary" />
-                  {siteConfig.phoneDisplay}
+                  {siteConfig.phoneDisplay} (Inquiries)
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${siteConfig.bookingNumber}`}
+                  className="flex items-center gap-2.5 transition-colors hover:text-primary"
+                >
+                  <Phone className="size-4 shrink-0 text-primary" />
+                  {siteConfig.bookingPhoneDisplay} (Bookings)
                 </a>
               </li>
               <li>

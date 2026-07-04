@@ -45,7 +45,13 @@ export function LocationContact() {
                   href={`tel:${siteConfig.whatsappNumber}`}
                   className="mt-0.5 block text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  {siteConfig.phoneDisplay}
+                  {siteConfig.phoneDisplay} (Inquiries)
+                </a>
+                <a
+                  href={`tel:${siteConfig.bookingNumber}`}
+                  className="mt-1 block text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {siteConfig.bookingPhoneDisplay} (Bookings)
                 </a>
               </div>
             </div>

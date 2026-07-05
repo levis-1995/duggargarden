@@ -25,7 +25,7 @@ export function ContactUs() {
             <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Calendar className="size-6" />
             </span>
-            <span className="text-sm font-medium text-foreground">Bookings</span>
+            <span className="text-sm font-medium text-foreground">Secondary Booking Contact</span>
             <span className="text-sm text-muted-foreground">{siteConfig.bookingPhoneDisplay}</span>
           </a>
 

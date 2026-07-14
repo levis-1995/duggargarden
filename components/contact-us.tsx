@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { Phone, MessageCircle, AtSign, MapPin, Calendar } from "lucide-react"
+// 1. Added 'Instagram' and removed 'Calendar' and 'AtSign' since they are no longer used
+import { Phone, MessageCircle, Instagram, MapPin } from "lucide-react"
 import { siteConfig, buildWhatsAppLink } from "@/lib/site"
 
 export function ContactUs() {
@@ -22,8 +23,9 @@ export function ContactUs() {
             href={`tel:${siteConfig.bookingNumber}`}
             className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
           >
+            {/* 2. Changed Calendar to Phone icon */}
             <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <Calendar className="size-6" />
+              <Phone className="size-6" />
             </span>
             <span className="text-sm font-medium text-foreground">Booking Contact</span>
             <span className="text-sm text-muted-foreground">{siteConfig.bookingPhoneDisplay}</span>
@@ -48,8 +50,9 @@ export function ContactUs() {
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"
           >
+            {/* 3. Changed AtSign to Instagram icon */}
             <span className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <AtSign className="size-6" />
+              <Instagram className="size-6" />
             </span>
             <span className="text-sm font-medium text-foreground">Instagram</span>
             <span className="text-sm text-muted-foreground">{siteConfig.instagramHandle}</span>

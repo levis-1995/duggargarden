@@ -3,8 +3,29 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Phone, AtSign } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 import { siteConfig } from "@/lib/site"
+
+function Instagram(props: React.ComponentPropsWithoutRef<"svg">) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  )
+}
 
 const navLinks = [
   { label: "Home", href: "#top" },
@@ -58,7 +79,7 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               aria-label="Visit Duggar Den on Instagram"
             >
-              <AtSign className="size-5" />
+              <Instagram className="size-5" />
             </a>
           </Button>
           <Button asChild className="hidden sm:inline-flex">
@@ -102,7 +123,7 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-foreground/80"
             >
-              <AtSign className="size-4" /> {siteConfig.instagramHandle}
+              <Instagram className="size-4" /> {siteConfig.instagramHandle}
             </a>
             <Button asChild className="mt-2">
               <a href="#book" onClick={() => setOpen(false)}>

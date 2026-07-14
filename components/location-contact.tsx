@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { MapPin, Phone, MessageCircle, Clock } from "lucide-react"
+import { MapPin, Phone, MessageCircle } from "lucide-react"
 import { siteConfig, buildWhatsAppLink } from "@/lib/site"
 
 export function LocationContact() {
@@ -53,18 +53,6 @@ export function LocationContact() {
                 >
                   {siteConfig.bookingPhoneDisplay} (Bookings)
                 </a>
-              </div>
-            </div>
-
-            <div className="flex gap-3.5">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Clock className="size-5" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground">Check-in / Check-out</h3>
-                <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
-                  Check-in 1:00 PM · Check-out 11:00 AM
-                </p>
               </div>
             </div>
           </div>

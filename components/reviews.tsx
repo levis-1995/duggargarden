@@ -4,6 +4,20 @@ import { useState, useEffect, useRef } from "react"
 import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+export interface DbReview {
+  id: string
+  rating: number
+  fullName: string
+  location: string
+  reviewText: string
+  photoUrl: string | null
+  createdAt: string | Date
+}
+
+interface ReviewsProps {
+  initialDbReviews?: DbReview[]
+}
+
 const staticReviews = [
   {
     name: "Aarav & Meera",
@@ -25,7 +39,7 @@ const staticReviews = [
   },
 ]
 
-export function Reviews() {
+export function Reviews({ initialDbReviews = [] }: ReviewsProps) {
   const [submittedReviews, setSubmittedReviews] = useState<any[]>([])
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
@@ -33,7 +47,20 @@ export function Reviews() {
     try {
       const stored = localStorage.getItem("duggar_den_reviews")
       if (stored) {
-        setSubmittedReviews(JSON.parse(stored))
+        // Filter out the test reviews from local storage
+        const reviews = JSON.parse(stored)
+        if (Array.isArray(reviews)) {
+          const filtered = reviews.filter((r: any) => {
+            const nameLower = (r.name || "").toLowerCase()
+            return !nameLower.includes("test") && nameLower !== "duggar den fan"
+          })
+          if (filtered.length !== reviews.length) {
+            localStorage.setItem("duggar_den_reviews", JSON.stringify(filtered))
+          }
+          setSubmittedReviews(filtered)
+        } else {
+          setSubmittedReviews([])
+        }
       }
     } catch (err) {
       console.error("Failed to load reviews from localStorage:", err)
@@ -50,7 +77,21 @@ export function Reviews() {
     }
   }
 
-  const allReviews = [...submittedReviews, ...staticReviews]
+  // Format database reviews to match display structure
+  const dbReviewsFormatted = initialDbReviews.map((r) => ({
+    name: r.fullName,
+    from: r.location,
+    text: r.reviewText,
+    rating: r.rating,
+    image: r.photoUrl,
+  }))
+
+  // Filter out local storage reviews that are already present in the database to avoid duplicate display
+  const uniqueLocalStorageReviews = submittedReviews.filter(
+    (sr) => !dbReviewsFormatted.some((dr) => dr.name === sr.name && dr.text === sr.text)
+  )
+
+  const allReviews = [...dbReviewsFormatted, ...uniqueLocalStorageReviews, ...staticReviews]
 
   return (
     <section id="reviews" className="bg-primary text-primary-foreground">

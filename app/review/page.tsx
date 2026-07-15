@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Input } from "@/components/ui/input"
@@ -8,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Star, Upload, X, Check, Loader2, MessageSquare } from "lucide-react"
+import { submitReview } from "../actions"
 
 export default function ReviewPage() {
   const [name, setName] = useState("")
@@ -25,6 +27,24 @@ export default function ReviewPage() {
   // Submit states
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const router = useRouter()
+  const [redirectCountdown, setRedirectCountdown] = useState(3)
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const interval = setInterval(() => {
+        setRedirectCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval)
+            router.push("/")
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      return () => clearInterval(interval)
+    }
+  }, [isSubmitted, router])
 
   // Drag and drop handlers
   const handleDragOver = (e: React.DragEvent) => {
@@ -73,7 +93,7 @@ export default function ReviewPage() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (rating === 0) {
       alert("Please select a star rating.")
@@ -81,33 +101,44 @@ export default function ReviewPage() {
     }
     setIsSubmitting(true)
 
-    // Simulate submission to backend API
-    setTimeout(() => {
-      const newReview = {
-        name,
-        from: location,
-        text: description,
-        rating,
-        image: imagePreview,
-        date: new Date().toISOString()
-      }
-      try {
-        const existing = JSON.parse(localStorage.getItem("duggar_den_reviews") || "[]")
-        localStorage.setItem("duggar_den_reviews", JSON.stringify([newReview, ...existing]))
-      } catch (err) {
-        console.error("Failed to save review to localStorage:", err)
+    try {
+      const formData = new FormData()
+      formData.append("rating", rating.toString())
+      formData.append("fullName", name)
+      formData.append("location", location)
+      formData.append("reviewText", description)
+      if (image) {
+        formData.append("photo", image)
       }
 
-      console.log("Submitted Review Data:", {
-        name,
-        location,
-        rating,
-        description,
-        photoBase64: imagePreview ? `${imagePreview.slice(0, 100)}...` : null
-      })
+      const result = await submitReview(formData)
+      if (result.success) {
+        // Also update local storage for backwards compatibility
+        const newReview = {
+          name,
+          from: location,
+          text: description,
+          rating,
+          image: imagePreview,
+          date: new Date().toISOString()
+        }
+        try {
+          const existing = JSON.parse(localStorage.getItem("duggar_den_reviews") || "[]")
+          localStorage.setItem("duggar_den_reviews", JSON.stringify([newReview, ...existing]))
+        } catch (err) {
+          console.error("Failed to save review to localStorage:", err)
+        }
+
+        setIsSubmitted(true)
+      } else {
+        alert(result.error || "Failed to submit review.")
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error)
+      alert("An unexpected error occurred.")
+    } finally {
       setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 1500)
+    }
   }
 
   return (
@@ -285,11 +316,19 @@ export default function ReviewPage() {
               <p className="mt-3 leading-relaxed text-muted-foreground">
                 Thank you for sharing your experience, {name}. Your feedback is deeply appreciated and helps us keep making Duggar Den a magical place.
               </p>
+
+              <div className="mt-6 text-sm text-muted-foreground font-medium flex items-center justify-center gap-2">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                </span>
+                Redirecting to home page in {redirectCountdown}s...
+              </div>
               
               <Button
                 asChild
                 size="lg"
-                className="mt-8 w-full h-11 text-base font-semibold"
+                className="mt-6 w-full h-11 text-base font-semibold"
               >
                 <a href="/">Back to Home</a>
               </Button>

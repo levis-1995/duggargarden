@@ -8,7 +8,7 @@ import { LocationContact } from "@/components/location-contact"
 import { ContactUs } from "@/components/contact-us"
 import { SiteFooter } from "@/components/site-footer"
 import { db } from "@/lib/db"
-
+export const dynamic = 'force-dynamic';
 export default async function Page() {
   const dbReviews = await db.review.findMany({
     orderBy: {

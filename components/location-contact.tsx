@@ -21,19 +21,24 @@ export function LocationContact() {
           </p>
 
           <div className="mt-8 flex flex-col gap-5">
-            <div className="flex gap-3.5">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <a
+              href={siteConfig.mapLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex gap-3.5 group hover:opacity-90 transition-opacity"
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                 <MapPin className="size-5" />
               </div>
               <div>
-                <h3 className="font-medium text-foreground">Address</h3>
+                <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">Address</h3>
                 <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
                   {siteConfig.address.line1}
                   <br />
                   {siteConfig.address.line2}
                 </p>
               </div>
-            </div>
+            </a>
 
             <div className="flex gap-3.5">
               <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -68,6 +73,16 @@ export function LocationContact() {
               >
                 <MessageCircle className="size-5" />
                 Chat on WhatsApp
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="gap-2">
+              <a
+                href={siteConfig.mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MapPin className="size-5" />
+                Get Directions
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="gap-2">

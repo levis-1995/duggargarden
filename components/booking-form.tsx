@@ -98,7 +98,7 @@ export function BookingForm() {
 
       <div className="flex flex-col gap-2">
         <Label>Guests</Label>
-        <Select value={guests} onValueChange={setGuests}>
+        <Select value={guests} onValueChange={(val) => setGuests(val ?? "")}>
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>

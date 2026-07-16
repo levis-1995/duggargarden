@@ -13,7 +13,8 @@ export const siteConfig = {
     line2: "Sankari, Jammu and Kashmir 182125",
     full: "Panchari, Meer, Sankari, Jammu and Kashmir 182125",
   },
-  mapQuery: "Panchari Udhampur Jammu and Kashmir 182125",
+  mapQuery: "Duggar Den (Duggarden), Panchari, Meer, sankari, Jammu and Kashmir 182125",
+  mapLink: "https://maps.app.goo.gl/VfQbPGTCzn9ZasJF9?g_st=awb",
 }
 
 export function buildWhatsAppLink(message: string) {

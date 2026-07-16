@@ -77,9 +77,16 @@ export function SiteFooter() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">Get in touch</h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>{siteConfig.address.full}</span>
+              <li>
+                <a
+                  href={siteConfig.mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2.5 transition-colors hover:text-primary"
+                >
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+                  <span>{siteConfig.address.full}</span>
+                </a>
               </li>
               <li>
                 <a
@@ -115,7 +122,15 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} {siteConfig.name}. {siteConfig.tagline}. All rights reserved.
+          © {new Date().getFullYear()} {siteConfig.name}. All Rights Reserved. Designed And Developed by{" "}
+          <a
+            href="https://buginfotech.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:text-primary transition-colors font-medium"
+          >
+            BugInfoTech
+          </a>
         </div>
       </div>
     </footer>

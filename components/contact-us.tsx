@@ -81,7 +81,7 @@ export function ContactUs() {
           </a>
 
           <a
-            href={`https://maps.google.com/maps?q=${encodeURIComponent(siteConfig.mapQuery)}`}
+            href={siteConfig.mapLink}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50 hover:bg-card/80"

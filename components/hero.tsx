@@ -19,10 +19,15 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-20 md:px-6 lg:grid-cols-[1.1fr_minmax(0,460px)] lg:pb-24 lg:pt-28">
         <div className="max-w-xl text-primary-foreground">
-          <span className="inline-flex items-center gap-2 rounded-full bg-background/15 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] backdrop-blur-sm ring-1 ring-background/25">
+          <a
+            href={siteConfig.mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-background/15 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] backdrop-blur-sm ring-1 ring-background/25 transition-colors hover:bg-background/25 hover:text-white"
+          >
             <MapPin className="size-3.5" />
             Panchari, Jammu & Kashmir
-          </span>
+          </a>
 
           <h1 className="mt-5 text-pretty font-serif text-4xl font-semibold leading-[1.05] md:text-6xl">
             A cozy mountain home among the pines
